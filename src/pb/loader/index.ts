@@ -4,7 +4,7 @@ import {
 	credentials as grpcCredentials,
 	loadPackageDefinition as grpcLoadPackageDefinition,
 } from "@grpc/grpc-js";
-import protoLoader from "@grpc/proto-loader";
+import { loadSync } from "@grpc/proto-loader";
 import { promisify } from "util";
 
 import protoConfig from "../../config/proto";
@@ -22,13 +22,14 @@ const load = ({
 	address,
 	credentials = grpcCredentials.createInsecure(),
 }: GrpcClientOptions) => {
-	const protoDef = protoLoader.loadSync(
+	const protoDef = loadSync(
 		path.resolve(__dirname, "..", `${fileName}.proto`),
 		protoConfig
 	);
 
-	// proto's official typing is not correct
-	const proto: any = grpcLoadPackageDefinition(protoDef);
+	// proto's official typing is not correct nor does it support generics
+	const proto: any =
+		grpcLoadPackageDefinition(protoDef)[serviceName.toLowerCase()];
 
 	const client = new proto[serviceName](address, credentials);
 
