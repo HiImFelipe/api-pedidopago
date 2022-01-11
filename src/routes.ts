@@ -1,6 +1,6 @@
 const { Router } = require("express");
 
-const router = new Router()
+const router = new Router();
 
 // router.get("/pharmacies/:id", PharmacyController.show);
 // router.post("/pharmacies", PharmacyController.store);
@@ -8,4 +8,4 @@ const router = new Router()
 // router.get("/products/:id", ProductController.show);
 // router.get("/products", ProductController.index);
 
-module.exports = router;
+export default router;
