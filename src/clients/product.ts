@@ -1,7 +1,10 @@
 import load from "../pb/loader";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export const ProductClient = load({
 	serviceName: "ProductService",
-	address: "localhost:50052",
+	address: `${process.env.APP_HOST}:50052`,
 	fileName: "product",
 });
