@@ -21,7 +21,7 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
 
 	return response.status(HttpStatusCode.InternalServerError).json({
 		status: "error",
-		message: "Internal server error",
+		message: err.message || "Internal server error",
 	});
 });
 
