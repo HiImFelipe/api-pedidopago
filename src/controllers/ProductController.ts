@@ -37,4 +37,12 @@ export class ProductController {
 
 		return res.json(response);
 	}
+
+	async cloneProduct(req: Request, res: Response) {
+		const { id } = req.params;
+
+		const response = await ProductClient.cloneProduct({ id });
+
+		return res.json(response);
+	}
 }

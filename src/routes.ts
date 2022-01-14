@@ -18,5 +18,6 @@ router.get("/products/:id", productController.show);
 router.post("/products", productController.store);
 router.put("/products/:id", productController.update);
 router.delete("/products/:id", productController.destroy);
+router.post("/products/:id/clone", productController.cloneProduct);
 
 export default router;
